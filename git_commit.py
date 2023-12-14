@@ -9,6 +9,7 @@ DIRS_TO_TRACK = [
     "Thunar",
     "wallpaper",
     "neofetch",
+    "rofi",
     "git_commit.py",
 ]
 def run_commands(message):
