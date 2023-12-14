@@ -18,7 +18,7 @@ def run_commands(message):
         git_add += f"{dir} "
     os.system(git_add)
     os.system(f'git commit -m "{message}"')
-    os.system("git push -u origin main")
+    os.system("git push origin master")
 
 def main():
 # Condition check to make sure there's one and only one argument given
