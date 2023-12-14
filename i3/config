@@ -17,9 +17,6 @@ gaps inner 10
 ####Windows######
 for_window[class="^.*"] border pixel 0
 for_window[window_role="pop_up"] floating enable
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -38,10 +35,10 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym $mod+Control+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym $mod+Control+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% 
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -51,10 +48,6 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 # Keyboard layout
 exec_always "setxkbmap -layout us,ir -option 'grp:alt_shift_toggle'"
-# locking screen
-#bindsym $mod+Control+l exec "i3lock -c 000000"
-#exec "xautolock -detectsleep -time 3 -locker \"i3lock -c 000000\""
-#bindsym $mod+q exec ~/.lock.sh
 ##########Applicaion Bindsyms###############
 
 # start a terminal
@@ -189,15 +182,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 mode "shutdown" {
-        bindsym $mod+s exec firefox
-        bindsym r exec shutdown -r 0
+        bindsym $mod+s exec shutdown now
+        bindsym r exec reboot
         bindsym l exec i3-msg exit
 
         bindsym Escape mode "default"
-        bindsym $mod+BackSpace mode "default"
+        bindsym $mod+Shift+s mode "default"
 }
 
-bindsym $mod+Backspace mode "shutdown"
+bindsym $mod+Shift+s mode "shutdown"
 
 ############autostart##############
 ###################################
